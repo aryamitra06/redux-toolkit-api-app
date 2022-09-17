@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPosts } from "./redux/user";
 
 function App() {
+  const dispatch = useDispatch();
+
+  React.useEffect(()=> {
+    dispatch(fetchPosts())
+  }, [dispatch])
+
+  const user = useSelector((state) => state.user);
+
+  console.log(user);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    </>
   );
 }
 
