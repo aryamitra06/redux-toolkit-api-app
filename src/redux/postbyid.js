@@ -19,14 +19,19 @@ export const fetchPostById = createAsyncThunk('fetchPostByIdThunk', async(id)=> 
     },
     extraReducers: {
       [fetchPostById.pending]: (state, action) => {
-        state.status = 'loading'
+        state.post = [];
+        state.status = 'loading';
+        state.error = null;
       },
       [fetchPostById.fulfilled]: (state, action) => {
-        state.post = action.payload
-        state.status = 'success'
+        state.post = action.payload;
+        state.status = 'success';
+        state.error = null;
       },
       [fetchPostById.rejected]: (state, action) => {
-        state.status = 'fail'
+        state.post = [];
+        state.status = 'fail';
+        state.error = 'error';
       },
     }
   })

@@ -1,33 +1,39 @@
 import React from "react";
 
+//react router dom import
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+
 //components import
 import Navbar from "../src/components/Navbar";
-import Search from "../src/components/Search";
 import Cards from "./components/Cards";
 
 //redux import
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPostById } from "./redux/postbyid";
 import { fetchPosts } from "./redux/posts";
+import DetailView from "./components/DetailView";
 
 function App() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
     dispatch(fetchPosts())
-    // dispatch(fetchPostById(2))
   }, [dispatch])
 
   const posts = useSelector((state) => state.posts);
-  const postbyid = useSelector((state) => state.postbyid)
 
   return (
     <>
-      <Navbar />
-      <div className="container">
-        <Search />
-        <Cards data={posts} />
-      </div>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route exact path="/" element={<Cards data={posts} />} />
+          <Route exact path="/post/:id" element={<DetailView />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

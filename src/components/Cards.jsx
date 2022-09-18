@@ -5,7 +5,7 @@ export default function Cards({ data }) {
     const { posts, status } = data;
 
     return (
-        <>
+        <div className='container'>
             {
                 status === "loading" && (
                     <div className="mt-3">
@@ -24,6 +24,6 @@ export default function Cards({ data }) {
                     ))
                 }
             </div>
-        </>
+        </div>
     )
 }
